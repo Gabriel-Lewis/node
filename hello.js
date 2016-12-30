@@ -1,12 +1,16 @@
-console.log('starting app');
-
 const fs = require('fs');
-const os = require('os');
 
-fs.appendFile('greetings.txt', 'Hello world!' + os.username, (err) => {
-    if (err) {
-        console.log('Unable to write to file');
-    }
-});
+var originalNote = {
+  title: 'title',
+  body: 'body'
+}
 
+var originalNoteString = JSON.stringify(originalNote);
 
+fs.writeFileSync('notes.json', originalNoteString);
+
+var noteString = fs.readFileSync('notes.json');
+var note = JSON.parse(noteString);
+
+console.log(note);
+console.log(note.title);
