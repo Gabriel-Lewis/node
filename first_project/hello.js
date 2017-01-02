@@ -4,19 +4,29 @@ const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
 
-const note = require('./notes')
+const notes = require('./notes')
 const argv = yargs.argv;
 const command = argv._[0];
 
 
 if ( command === 'add') {
-  note.addNote(argv.title, argv.body)
+  var note = notes.addNote(argv.title, argv.body)
+  if (note) {
+    console.log('Note Created')
+    console.log('--')
+    console.log(note.title)
+    console.log('--')
+    console.log(note.body);
+
+  } else {
+    console.log('Title taken')
+  }
 } else if (command === 'list') {
-	note.getAllNotes()
+	notes.getAllNotes()
 } else if (command === 'read') {
-	note.getNote(argv.title)
+	notes.getNote(argv.title)
 } else if (command === 'delete') {
-  note.removeNote(argv.title)
+  notes.removeNote(argv.title)
 } else {
 	console.log('Command not found')
 }
