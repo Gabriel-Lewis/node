@@ -1,19 +1,20 @@
 const express = require('express');
 const handlebars = require('hbs');
 const fs = require('fs');
-const port = process.env.PORT || 3000;
 
+const port = process.env.PORT || 3000;
 var app = express();
+
 handlebars.registerPartials(__dirname + '/views/partials');
 handlebars.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
+
 handlebars.registerHelper('screamIt', (text) => {
   return text.toUpperCase()
 })
-app.set('view engine', 'hbs');
 
-// app.use(express.static(__dirname + '/src'))
+app.set('view engine', 'hbs');
 
 app.use((req, res, next) => {
   var now = new Date().toString();
@@ -26,6 +27,8 @@ app.use((req, res, next) => {
   });
   next();
 });
+
+// For use when Website is under maintenance
 
 // app.use((req, res, next) => {
 //   res.render('maintenance.hbs', {
@@ -72,4 +75,5 @@ app.get('/bad', (req, res) => {
     errorMessage: 'Unable to handle request'
   })
 })
+
 app.listen(port, console.log(`Server Up on port ${port}`));
