@@ -55,15 +55,17 @@ In this example I test that the '/user' route returns an array of user objects, 
  })
 
  // server/server.test.js
- it("should return an array of users", (done) => {
-   request(app)
-     .get('/users')
-     .expect(200)
-     .expect((res) => {
-       expect(res.body.users).toInclude({
-         name: 'Gabriel'
-       });
-     })
-     .end(done)
+ describe("GET /users", () => {
+   it("should return an array of users", (done) => {
+     request(app)
+       .get('/users')
+       .expect(200)
+       .expect((res) => {
+         expect(res.body.users).toInclude({
+           name: 'Gabriel'
+         });
+       })
+       .end(done)
+   });
  });
  ```
