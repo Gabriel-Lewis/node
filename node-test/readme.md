@@ -36,9 +36,9 @@ describe("setName", () => {
 });
 ```
 
- ## Testing a Express.js App
+## Testing a Express.js App
 
- This repsitory also houses tests for testing a Express.js server using Mocha and Supertest
+This repsitory also houses tests for testing a Express.js server using Mocha and Supertest
 
 In this example I test that the '/user' route returns an array of user objects, and that it includes me.
 
