@@ -3,7 +3,7 @@ const handlebars = require('hbs');
 const fs = require('fs');
 
 const port = process.env.PORT || 3000;
-var app = express();
+const app = express();
 
 handlebars.registerPartials(__dirname + '/views/partials');
 handlebars.registerHelper('getCurrentYear', () => {
@@ -17,12 +17,10 @@ handlebars.registerHelper('screamIt', (text) => {
 app.set('view engine', 'hbs');
 
 app.use((req, res, next) => {
-  var now = new Date().toString();
+  const now = new Date().toString();
   let log = `${now} ${req.method} ${req.url}`
-  console.log(log);
   fs.appendFile('server.log', log + '\n', (err) => {
     if (err) {
-      console.log('Unable to append to server.log');
     }
   });
   next();
